@@ -17,6 +17,8 @@ namespace Ahorcados
         bool cuentanueva = false;
         public string cadenaconex;
         public MySqlConnection mycon;
+        public string usuario;
+        int puntuacion, partidasjugadas, partidasganadas, partidasperdidas;
         int ADMIN = 0;
         public Form2(string cadenaconex)
         {
@@ -86,7 +88,7 @@ namespace Ahorcados
             }
             else
             {
-                string usuario = TXUsu.Text;
+                usuario = TXUsu.Text;
                 string contraseña = TXPass.Text;
                 bool admini = false;
                 if (admin.Checked == true)
@@ -175,20 +177,38 @@ namespace Ahorcados
             if (admin==true)
             {
                 administrador = 1;
+                puntuacion = 9999;
+                partidasjugadas = 9999;
+                partidasganadas = 9999;
+                partidasperdidas = 9999;
             }
                 // Abrir la conexión
                 // Consulta SQL para insertar un nuevo usuario
                 string consulta = "INSERT INTO usuarios (Usuario, Contraseña, Admin) VALUES (@nuevoUsuario,@contraseña,@admin)";
+                string consulta2 = "INSERT INTO informacion (Jugador, Puntuacion, PartidasJugadas, PartidasGanadas, PartidasPerdidas) VALUES (@usu,@puntos,@partjug,@partgan,@partper)";
 
                 using (MySqlCommand command = new MySqlCommand(consulta, mycon))
                 {
-                    // Parámetro para el nuevo nombre de usuario
-                    command.Parameters.AddWithValue("@nuevoUsuario", usuario);
-                    command.Parameters.AddWithValue("@contraseña", contraseña);
-                    command.Parameters.AddWithValue("@admin", administrador);
+                // Parámetro para el nuevo nombre de usuario
+                command.Parameters.AddWithValue("@nuevoUsuario", usuario);
+                command.Parameters.AddWithValue("@contraseña", contraseña);
+                command.Parameters.AddWithValue("@admin", administrador);
 
-                    // Ejecutar la consulta
-                    command.ExecuteNonQuery();
+                // Ejecutar la consulta
+                command.ExecuteNonQuery();
+                }
+                 using (MySqlCommand command2 = new MySqlCommand(consulta2, mycon))
+                {
+                // Parámetro para el nuevo nombre de usuario
+
+                command2.Parameters.AddWithValue("@usu", usuario);
+                command2.Parameters.AddWithValue("@puntos", puntuacion);
+                command2.Parameters.AddWithValue("@partjug", partidasjugadas);
+                command2.Parameters.AddWithValue("@partgan", partidasganadas);
+                command2.Parameters.AddWithValue("@partper", partidasperdidas);
+
+                // Ejecutar la consulta
+                command2.ExecuteNonQuery();
                 }
         }
         public bool login(string usuario, string contraseña)
@@ -336,7 +356,7 @@ namespace Ahorcados
 
         private void Jugar_Click(object sender, EventArgs e)
         {
-            Form4 jugar = new Form4(cadenaconex);
+            Form4 jugar = new Form4(cadenaconex,usuario);
             jugar.Show();
         }
     }

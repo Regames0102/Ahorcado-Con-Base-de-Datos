@@ -52,7 +52,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 40.25F);
             this.label1.Location = new System.Drawing.Point(311, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(174, 70);
+            this.label1.Size = new System.Drawing.Size(219, 89);
             this.label1.TabIndex = 6;
             this.label1.Text = "Login";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -62,7 +62,7 @@
             this.TXUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
             this.TXUser.Location = new System.Drawing.Point(383, 166);
             this.TXUser.Name = "TXUser";
-            this.TXUser.Size = new System.Drawing.Size(145, 32);
+            this.TXUser.Size = new System.Drawing.Size(145, 38);
             this.TXUser.TabIndex = 7;
             this.TXUser.Text = "root";
             // 
@@ -73,7 +73,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
             this.label2.Location = new System.Drawing.Point(267, 167);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 29);
+            this.label2.Size = new System.Drawing.Size(121, 35);
             this.label2.TabIndex = 8;
             this.label2.Text = "Usuario";
             // 
@@ -84,7 +84,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
             this.label3.Location = new System.Drawing.Point(224, 213);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(143, 29);
+            this.label3.Size = new System.Drawing.Size(174, 35);
             this.label3.TabIndex = 9;
             this.label3.Text = "Contraseña";
             // 
@@ -93,7 +93,7 @@
             this.TXPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
             this.TXPass.Location = new System.Drawing.Point(383, 213);
             this.TXPass.Name = "TXPass";
-            this.TXPass.Size = new System.Drawing.Size(145, 32);
+            this.TXPass.Size = new System.Drawing.Size(145, 38);
             this.TXPass.TabIndex = 10;
             this.TXPass.Text = "dani";
             this.TXPass.UseSystemPasswordChar = true;
@@ -132,7 +132,7 @@
             this.TXHost.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
             this.TXHost.Location = new System.Drawing.Point(383, 119);
             this.TXHost.Name = "TXHost";
-            this.TXHost.Size = new System.Drawing.Size(145, 32);
+            this.TXHost.Size = new System.Drawing.Size(145, 38);
             this.TXHost.TabIndex = 14;
             this.TXHost.Text = "localhost";
             // 
@@ -143,7 +143,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
             this.label4.Location = new System.Drawing.Point(302, 120);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 29);
+            this.label4.Size = new System.Drawing.Size(79, 35);
             this.label4.TabIndex = 15;
             this.label4.Text = "Host";
             // 
@@ -154,7 +154,7 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
             this.label5.Location = new System.Drawing.Point(188, 255);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(179, 29);
+            this.label5.Size = new System.Drawing.Size(217, 35);
             this.label5.TabIndex = 16;
             this.label5.Text = "Base de Datos";
             // 
@@ -163,7 +163,7 @@
             this.TXBD.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
             this.TXBD.Location = new System.Drawing.Point(385, 254);
             this.TXBD.Name = "TXBD";
-            this.TXBD.Size = new System.Drawing.Size(143, 32);
+            this.TXBD.Size = new System.Drawing.Size(143, 38);
             this.TXBD.TabIndex = 17;
             this.TXBD.Text = "ahorcado";
             // 

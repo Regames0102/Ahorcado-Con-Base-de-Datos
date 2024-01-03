@@ -21,12 +21,14 @@ namespace Ahorcados
         char[] PalabrasAdivinadas, PalabraSeleccionada, Alfabeto;
         public string[] Categoria, Animales, Paises, Ciudades, Comida, Deportes;
         int oportunidades;
-        String[] Palabras;
+        string[] Palabras;
         int aciertos;
         int puntos;
         int partidasjug;
         string palabra;
         string cadenaconex;
+        public MySqlConnection mycon;
+        string usuario;
 
         private void Jugar_Click(object sender, EventArgs e)
         {
@@ -43,8 +45,8 @@ namespace Ahorcados
         }
 
         Boolean fin;
-        int ganadas;
-        int perdidas;
+        public int ganadas;
+        public int perdidas;
 
         private void Volver_Click(object sender, EventArgs e)
         {
@@ -52,7 +54,8 @@ namespace Ahorcados
             Form1 form = new Form1();
             form.Show();
         }
-        void cargardatoscombo() {
+        void cargardatoscombo()
+        {
             using (MySqlConnection mycon = new MySqlConnection(cadenaconex))
             {
                 mycon.Open();
@@ -83,18 +86,17 @@ namespace Ahorcados
 
         private void Form4_Load(object sender, EventArgs e)
         {
+            conectar();
             cargardatoscombo();
         }
-        
+
         private void creararray(string categoria)
         {
             List<string> palabras = new List<string>();  // Usamos una lista para almacenar los valores dinámicamente
 
             using (MySqlConnection mycon = new MySqlConnection(cadenaconex))
             {
-                mycon.Open();
-
-                string consulta ="SELECT palabra FROM palabras WHERE categoria = @Categoria";
+                string consulta = "SELECT palabra FROM palabras WHERE categoria = @Categoria";
                 using (MySqlCommand command = new MySqlCommand(consulta, mycon))
                 {
                     command.Parameters.AddWithValue("@Categoria", categoria);
@@ -115,15 +117,52 @@ namespace Ahorcados
                 }
             }
 
-            // Convertir la lista a un array si es necesario
-            string[] arrayResultante = palabras.ToArray();
+            if (categoria.Equals("Animales"))
+            {
+                Animales = palabras.ToArray();
+            }
+            else if (categoria.Equals("Ciudades"))
+            {
+                Ciudades = palabras.ToArray();
+            }
+            else if (categoria.Equals("Comida"))
+            {
+                Comida = palabras.ToArray();
+            }
+            else if (categoria.Equals("Deportes"))
+            {
+                Deportes = palabras.ToArray();
+            }
+            else
+            {
+                Paises = palabras.ToArray();
+            }
         }
 
-        public Form4(string cadenaconex)
+        public bool conectar()
         {
+            try
+            {
+
+                mycon = new MySqlConnection(cadenaconex);
+                mycon.Open();
+                return true;
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Error a la hora de conectarse a la base de datos");
+                return false;
+            }
+        }
+
+        public Form4(string cadenaconex, string Usuario)
+        {
+            this.usuario = usuario;
             this.cadenaconex = cadenaconex;
             InitializeComponent();
-            SeleccCat.Font = new Font("BlackChancery",20);
+            SeleccCat.Font = new Font("BlackChancery", 20);
             categorias.Font = new Font("BlackChancery", 20);
             label1.Font = new Font("Berkshire Swash", 14);
             label2.Font = new Font("Berkshire Swash", 14);
@@ -147,12 +186,6 @@ namespace Ahorcados
             pictureBox7.Visible = false;
             pictureBox8.Visible = false;
 
-            Animales = new String[] { "Gato", "Perro", "Serpiente", "Pajaro", "Lagarto", "Conejo", "Araña","Elefante", "León", "Tigre", "Jirafa", "Oso", "Rinoceronte", "Hipopótamo", "Zorro", "Koala", "Canguro", "Pato", "Caballo", "Cebra", "Nutria", "Delfín", "Ballena", "Ornitorrinco", "Gorila", "Chimpancé", "Pez payaso" };
-            Paises = new String[] { "España", "Alemania", "Francia", "Estados Unidos", "Canada", "Argentina", "Mexico", "Italia", "China", "Japón", "Brasil", "Rusia", "India", "Australia" };
-            Ciudades = new String[] { "Huelva", "Sevilla", "Madrid", "Barcelona", "Teruel", "Malaga", "Lugo", "Valencia", "Bilbao", "Zaragoza", "Granada", "Toledo", "Cádiz", "Santander" };
-            Comida = new String[] { "Espagueti", "Pizza", "Hamburguesa", "Arroz", "Tortilla", "Asado", "Patatas", "Sushi", "Curry", "Ensalada", "Paella", "Ceviche", "Tacos", "Lasaña" };
-            Deportes = new String[] { "Futbol", "Baloncesto", "Tenis", "Padel", "Badmington", "Rugby", "Baseball","Voleibol", "Atletismo", "Natación", "Hockey", "Golf", "Ciclismo", "Boxeo" };
-
         }
         public void iniciarJuego()
         {
@@ -160,6 +193,7 @@ namespace Ahorcados
             {
                 MessageBox.Show("Se han acabado las partidas \nHas ganado: " + ganadas + " partidas y has perdido: " + perdidas + " partidas");
                 final();
+                actualizarPartidas();
             }
             else
             {
@@ -225,7 +259,7 @@ namespace Ahorcados
                     btn.BackColor = System.Drawing.ColorTranslator.FromHtml("#280003");
                     btn.Name = Letra.ToString();
                     flFichasJuego.Controls.Add(btn);
-                  
+
                 }
                 flPalabra.Controls.Clear();
 
@@ -313,12 +347,34 @@ namespace Ahorcados
                     partidasjug++;
                     Contpart.Text = partidasjug.ToString();
                     perdidas++;
-                    MessageBox.Show("La palabra era: "+ palabra);
+                    MessageBox.Show("La palabra era: " + palabra);
                     partidas();
 
                 }
 
 
+            }
+        }
+
+        private void actualizarPartidas()
+        {
+            string nombreUsuario = usuario;
+            int puntuacion = puntos;
+            int partidasGanadas = ganadas;
+            int partidasPerdidas = perdidas;
+            int partidasJugadas = partidasjug;
+
+            string consulta = "UPDATE informacion SET Puntuacion = @Puntuacion, PartidasJugadas = @PartidasJugadas, PartidasGanadas = @PartidasGanadas, PartidasPerdidas = @PartidasPerdidas WHERE Jugador = @NombreUsuario";
+          
+            using (MySqlCommand comando = new MySqlCommand(consulta, mycon))
+            {
+                comando.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
+                comando.Parameters.AddWithValue("@Puntuacion", puntuacion);
+                comando.Parameters.AddWithValue("@PartidasJugadas", partidasJugadas);
+                comando.Parameters.AddWithValue("@PartidasGanadas", partidasGanadas);
+                comando.Parameters.AddWithValue("@PartidasPerdidas", partidasPerdidas);
+
+                comando.ExecuteNonQuery();
             }
         }
 
