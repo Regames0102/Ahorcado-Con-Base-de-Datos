@@ -7,58 +7,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Ahorcados
 {
     public partial class Form1 : Form
     {
-
-        Form2 formulario = new Form2();
-        Form3 form3 = new Form3();
-        public static Form4 form4 = new Form4();
+        public MySqlConnection mycon;
+        public string cadenaconex;
         public Form1()
         {
             InitializeComponent();
-            label1.Font = new Font("Yeseva One", 40);
-            label1.ForeColor = System.Drawing.ColorTranslator.FromHtml("#9A381D");
-            jugar.Font = new Font("Yeseva One", 12, FontStyle.Bold);
-            instr.Font = new Font("Yeseva One", 12, FontStyle.Bold);
-            salir.Font = new Font("Yeseva One", 12, FontStyle.Bold);
-            jugar.FlatAppearance.MouseOverBackColor = System.Drawing.ColorTranslator.FromHtml("#B84300");
-            instr.FlatAppearance.MouseOverBackColor = System.Drawing.ColorTranslator.FromHtml("#B84300");
-            salir.FlatAppearance.MouseOverBackColor = System.Drawing.ColorTranslator.FromHtml("#B84300");
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-            form4.Show();
-            this.Hide();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            
-            formulario.Show();
-            this.Hide();   
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            formulario.Close();
-            form3.Close();
-            
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+        public bool conectar()
         {
+            try
+            {
 
+                mycon = new MySqlConnection(cadenaconex);
+                mycon.Open();
+                return true;
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Credenciales Incorrectas");
+                return false;
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            string host = TXHost.Text;
+            string user = TXUser.Text;
+            string password = TXPass.Text;
+            string bd = TXBD.Text;
+            cadenaconex = "server=" + host + ";user id=" + user + ";password=" + password + ";database=" + bd + ";persistsecurityinfo=True";
+            if (conectar())
+            {
+                Form2 administracion = new Form2(cadenaconex);
+                administracion.Show();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

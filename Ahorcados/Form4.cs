@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,7 @@ namespace Ahorcados
         int puntos;
         int partidasjug;
         string palabra;
+        string cadenaconex;
 
         private void Jugar_Click(object sender, EventArgs e)
         {
@@ -50,9 +52,76 @@ namespace Ahorcados
             Form1 form = new Form1();
             form.Show();
         }
+        void cargardatoscombo() {
+            using (MySqlConnection mycon = new MySqlConnection(cadenaconex))
+            {
+                mycon.Open();
 
-        public Form4()
+                string consulta = "SELECT Categoria FROM Categorias";
+                using (MySqlCommand command = new MySqlCommand(consulta, mycon))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Verificar si hay filas devueltas
+                        if (reader.HasRows)
+                        {
+                            // Limpiar el ComboBox antes de agregar nuevos elementos
+                            categorias.Items.Clear();
+
+                            // Leer cada fila y agregar el valor al ComboBox
+                            while (reader.Read())
+                            {
+                                // Supongamos que estás obteniendo un valor de una columna llamada "TuColumna"
+                                string valor = reader[0].ToString();
+                                categorias.Items.Add(valor);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Form4_Load(object sender, EventArgs e)
         {
+            cargardatoscombo();
+        }
+        
+        private void creararray(string categoria)
+        {
+            List<string> palabras = new List<string>();  // Usamos una lista para almacenar los valores dinámicamente
+
+            using (MySqlConnection mycon = new MySqlConnection(cadenaconex))
+            {
+                mycon.Open();
+
+                string consulta ="SELECT palabra FROM palabras WHERE categoria = @Categoria";
+                using (MySqlCommand command = new MySqlCommand(consulta, mycon))
+                {
+                    command.Parameters.AddWithValue("@Categoria", categoria);
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Verificar si hay filas devueltas
+                        if (reader.HasRows)
+                        {
+                            // Leer cada fila y agregar el valor a la lista
+                            while (reader.Read())
+                            {
+                                // Supongamos que estás obteniendo un valor de una columna llamada "TuColumna"
+                                string valor = reader[0].ToString();
+                                palabras.Add(valor);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Convertir la lista a un array si es necesario
+            string[] arrayResultante = palabras.ToArray();
+        }
+
+        public Form4(string cadenaconex)
+        {
+            this.cadenaconex = cadenaconex;
             InitializeComponent();
             SeleccCat.Font = new Font("BlackChancery",20);
             categorias.Font = new Font("BlackChancery", 20);
@@ -78,17 +147,12 @@ namespace Ahorcados
             pictureBox7.Visible = false;
             pictureBox8.Visible = false;
 
-            Categoria = new string[] { "Animales", "Paises", "Ciudades", "Comida", "Deportes" };
             Animales = new String[] { "Gato", "Perro", "Serpiente", "Pajaro", "Lagarto", "Conejo", "Araña","Elefante", "León", "Tigre", "Jirafa", "Oso", "Rinoceronte", "Hipopótamo", "Zorro", "Koala", "Canguro", "Pato", "Caballo", "Cebra", "Nutria", "Delfín", "Ballena", "Ornitorrinco", "Gorila", "Chimpancé", "Pez payaso" };
             Paises = new String[] { "España", "Alemania", "Francia", "Estados Unidos", "Canada", "Argentina", "Mexico", "Italia", "China", "Japón", "Brasil", "Rusia", "India", "Australia" };
             Ciudades = new String[] { "Huelva", "Sevilla", "Madrid", "Barcelona", "Teruel", "Malaga", "Lugo", "Valencia", "Bilbao", "Zaragoza", "Granada", "Toledo", "Cádiz", "Santander" };
             Comida = new String[] { "Espagueti", "Pizza", "Hamburguesa", "Arroz", "Tortilla", "Asado", "Patatas", "Sushi", "Curry", "Ensalada", "Paella", "Ceviche", "Tacos", "Lasaña" };
             Deportes = new String[] { "Futbol", "Baloncesto", "Tenis", "Padel", "Badmington", "Rugby", "Baseball","Voleibol", "Atletismo", "Natación", "Hockey", "Golf", "Ciclismo", "Boxeo" };
 
-            foreach (string categoria in Categoria)
-            {
-                categorias.Items.Add(categoria);
-            }
         }
         public void iniciarJuego()
         {
@@ -110,6 +174,8 @@ namespace Ahorcados
                 pictureBox7.Visible = false;
                 pictureBox8.Visible = false;
                 string categoriaElegida = categorias.SelectedItem.ToString();
+
+                creararray(categoriaElegida);
                 switch (categoriaElegida)
                 {
                     case "Animales":
@@ -136,10 +202,6 @@ namespace Ahorcados
                 flFichasJuego.Controls.Clear();
                 flFichasJuego.Enabled = true;
                 oportunidades = 0;
-                foreach (string categoria in Categoria)
-                {
-
-                }
                 Alfabeto = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".ToCharArray();
 
 

@@ -50,6 +50,9 @@
             this.SeleccCat = new System.Windows.Forms.Label();
             this.categorias = new System.Windows.Forms.ComboBox();
             this.flPalabra = new System.Windows.Forms.FlowLayoutPanel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.jugarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuracionDePartidasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -59,6 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Volver
@@ -66,7 +70,7 @@
             this.Volver.BackColor = System.Drawing.Color.Transparent;
             this.Volver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Volver.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.Volver.Location = new System.Drawing.Point(681, 465);
+            this.Volver.Location = new System.Drawing.Point(169, 101);
             this.Volver.Name = "Volver";
             this.Volver.Size = new System.Drawing.Size(146, 58);
             this.Volver.TabIndex = 0;
@@ -79,7 +83,7 @@
             this.TermPart.BackColor = System.Drawing.Color.Transparent;
             this.TermPart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TermPart.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.TermPart.Location = new System.Drawing.Point(681, 401);
+            this.TermPart.Location = new System.Drawing.Point(169, 37);
             this.TermPart.Name = "TermPart";
             this.TermPart.Size = new System.Drawing.Size(146, 58);
             this.TermPart.TabIndex = 0;
@@ -92,7 +96,7 @@
             this.Jugar.BackColor = System.Drawing.Color.Transparent;
             this.Jugar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Jugar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.Jugar.Location = new System.Drawing.Point(529, 401);
+            this.Jugar.Location = new System.Drawing.Point(17, 37);
             this.Jugar.Name = "Jugar";
             this.Jugar.Size = new System.Drawing.Size(146, 58);
             this.Jugar.TabIndex = 0;
@@ -105,7 +109,7 @@
             this.Reiniciar.BackColor = System.Drawing.Color.Transparent;
             this.Reiniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Reiniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.Reiniciar.Location = new System.Drawing.Point(529, 465);
+            this.Reiniciar.Location = new System.Drawing.Point(17, 101);
             this.Reiniciar.Name = "Reiniciar";
             this.Reiniciar.Size = new System.Drawing.Size(146, 58);
             this.Reiniciar.TabIndex = 0;
@@ -123,7 +127,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
             this.groupBox1.Location = new System.Drawing.Point(532, 10);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 362);
+            this.groupBox1.Size = new System.Drawing.Size(298, 509);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Puntuacion";
@@ -285,6 +289,30 @@
             this.flPalabra.Size = new System.Drawing.Size(502, 182);
             this.flPalabra.TabIndex = 13;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.jugarToolStripMenuItem,
+            this.configuracionDePartidasToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(842, 24);
+            this.menuStrip1.TabIndex = 14;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // jugarToolStripMenuItem
+            // 
+            this.jugarToolStripMenuItem.Name = "jugarToolStripMenuItem";
+            this.jugarToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.jugarToolStripMenuItem.Text = "Jugar";
+            // 
+            // configuracionDePartidasToolStripMenuItem
+            // 
+            this.configuracionDePartidasToolStripMenuItem.Name = "configuracionDePartidasToolStripMenuItem";
+            this.configuracionDePartidasToolStripMenuItem.Size = new System.Drawing.Size(156, 20);
+            this.configuracionDePartidasToolStripMenuItem.Text = "Configuracion de Partidas";
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -310,8 +338,11 @@
             this.Controls.Add(this.Jugar);
             this.Controls.Add(this.TermPart);
             this.Controls.Add(this.Volver);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form4";
             this.Text = " ";
+            this.Load += new System.EventHandler(this.Form4_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -322,6 +353,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -350,5 +383,8 @@
         private System.Windows.Forms.Label SeleccCat;
         private System.Windows.Forms.ComboBox categorias;
         private System.Windows.Forms.FlowLayoutPanel flPalabra;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem jugarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configuracionDePartidasToolStripMenuItem;
     }
 }
