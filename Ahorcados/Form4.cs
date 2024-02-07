@@ -169,6 +169,12 @@ namespace Ahorcados
             pictureBox8.Visible = false;
 
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
         public void iniciarJuego()
         {
             if (partidasjug == 3)
@@ -324,21 +330,44 @@ namespace Ahorcados
 
         private void actualizarPartidas()
         {
+            int Ganado = 0;
+            if (perdidas==3)
+            {
+                Ganado = 0;
+            }
+            else
+            {
+                Ganado = 1;
+            }
             string nombreUsuario = usuario;
             int puntuacion = puntos;
             int partidasGanadas = ganadas;
             int partidasPerdidas = perdidas;
             int partidasJugadas = partidasjug;
+            int contador = 0;
+            DateTime fechaActual = DateTime.Now;
+            string consulta2 = "select count(*) from informacion";
 
-            string consulta = "UPDATE informacion SET Puntuacion = @Puntuacion, PartidasJugadas = @PartidasJugadas, PartidasGanadas = @PartidasGanadas, PartidasPerdidas = @PartidasPerdidas WHERE Jugador = @NombreUsuario";
+            using (MySqlCommand commando2 = new MySqlCommand(consulta2, mycon))
+            {
+                using (MySqlDataReader reader = commando2.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        contador = reader.GetInt32(0);
+                    }
+                }
+            }
+            string consulta = "insert into  informacion (IDPartida, Jugador, Fecha, Ganado,) values (@Idpart,@Jugador,@Fecha,@Ganado)";
+            
           
             using (MySqlCommand comando = new MySqlCommand(consulta, mycon))
             {
                 comando.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
-                comando.Parameters.AddWithValue("@Puntuacion", puntuacion);
-                comando.Parameters.AddWithValue("@PartidasJugadas", partidasJugadas);
-                comando.Parameters.AddWithValue("@PartidasGanadas", partidasGanadas);
-                comando.Parameters.AddWithValue("@PartidasPerdidas", partidasPerdidas);
+                comando.Parameters.AddWithValue("@Idpart",contador);
+                comando.Parameters.AddWithValue("@Fecha", fechaActual);
+                comando.Parameters.AddWithValue("@Ganado", Ganado);
+
 
                 comando.ExecuteNonQuery();
             }

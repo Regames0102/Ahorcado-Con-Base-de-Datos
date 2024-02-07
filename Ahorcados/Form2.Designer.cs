@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Label label7;
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,41 +45,27 @@
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.admin = new System.Windows.Forms.CheckBox();
             this.InfoLogin = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.ActualizarJugadores = new System.Windows.Forms.Button();
             this.ActualizarPalabras = new System.Windows.Forms.Button();
             this.ActualizarCategoria = new System.Windows.Forms.Button();
-            this.partperd = new System.Windows.Forms.Label();
-            this.partgan = new System.Windows.Forms.Label();
-            this.partjug = new System.Windows.Forms.Label();
-            this.puntos = new System.Windows.Forms.Label();
             this.CerrarSesion = new System.Windows.Forms.Button();
-            this.BorrarDatos = new System.Windows.Forms.Button();
             this.Jugar = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            label7 = new System.Windows.Forms.Label();
             this.InfoLogin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
-            label7.Location = new System.Drawing.Point(17, 189);
-            label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(299, 38);
-            label7.TabIndex = 2;
-            label7.Text = "Partidas ganadas =";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36.25F);
-            this.label1.Location = new System.Drawing.Point(244, 69);
+            this.label1.Location = new System.Drawing.Point(325, 85);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(373, 57);
+            this.label1.Size = new System.Drawing.Size(462, 70);
             this.label1.TabIndex = 0;
             this.label1.Text = "Inicio de Sesion";
             // 
@@ -88,9 +73,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.label2.Location = new System.Drawing.Point(219, 335);
+            this.label2.Location = new System.Drawing.Point(292, 412);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(181, 31);
+            this.label2.Size = new System.Drawing.Size(227, 39);
             this.label2.TabIndex = 1;
             this.label2.Text = "¿Eres nuevo?";
             // 
@@ -98,9 +84,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.label3.Location = new System.Drawing.Point(232, 251);
+            this.label3.Location = new System.Drawing.Point(309, 309);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(155, 31);
+            this.label3.Size = new System.Drawing.Size(193, 39);
             this.label3.TabIndex = 2;
             this.label3.Text = "Contraseña";
             // 
@@ -108,9 +95,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.label4.Location = new System.Drawing.Point(279, 196);
+            this.label4.Location = new System.Drawing.Point(372, 241);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 31);
+            this.label4.Size = new System.Drawing.Size(135, 39);
             this.label4.TabIndex = 3;
             this.label4.Text = "Usuario";
             // 
@@ -118,9 +106,10 @@
             // 
             this.CrearCuenta.AutoSize = true;
             this.CrearCuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.CrearCuenta.Location = new System.Drawing.Point(407, 335);
+            this.CrearCuenta.Location = new System.Drawing.Point(543, 412);
+            this.CrearCuenta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CrearCuenta.Name = "CrearCuenta";
-            this.CrearCuenta.Size = new System.Drawing.Size(223, 31);
+            this.CrearCuenta.Size = new System.Drawing.Size(279, 39);
             this.CrearCuenta.TabIndex = 4;
             this.CrearCuenta.Text = "Crear una cuenta";
             this.CrearCuenta.Click += new System.EventHandler(this.CrearCuenta_Click);
@@ -130,9 +119,10 @@
             // BTNAceptar
             // 
             this.BTNAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
-            this.BTNAceptar.Location = new System.Drawing.Point(213, 382);
+            this.BTNAceptar.Location = new System.Drawing.Point(284, 470);
+            this.BTNAceptar.Margin = new System.Windows.Forms.Padding(4);
             this.BTNAceptar.Name = "BTNAceptar";
-            this.BTNAceptar.Size = new System.Drawing.Size(161, 79);
+            this.BTNAceptar.Size = new System.Drawing.Size(215, 97);
             this.BTNAceptar.TabIndex = 5;
             this.BTNAceptar.Text = "Iniciar Sesion";
             this.BTNAceptar.UseVisualStyleBackColor = true;
@@ -141,9 +131,10 @@
             // BTNCanc
             // 
             this.BTNCanc.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
-            this.BTNCanc.Location = new System.Drawing.Point(460, 382);
+            this.BTNCanc.Location = new System.Drawing.Point(613, 470);
+            this.BTNCanc.Margin = new System.Windows.Forms.Padding(4);
             this.BTNCanc.Name = "BTNCanc";
-            this.BTNCanc.Size = new System.Drawing.Size(170, 79);
+            this.BTNCanc.Size = new System.Drawing.Size(227, 97);
             this.BTNCanc.TabIndex = 6;
             this.BTNCanc.Text = "Cancelar";
             this.BTNCanc.UseVisualStyleBackColor = true;
@@ -152,17 +143,19 @@
             // TXUsu
             // 
             this.TXUsu.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
-            this.TXUsu.Location = new System.Drawing.Point(413, 196);
+            this.TXUsu.Location = new System.Drawing.Point(551, 241);
+            this.TXUsu.Margin = new System.Windows.Forms.Padding(4);
             this.TXUsu.Name = "TXUsu";
-            this.TXUsu.Size = new System.Drawing.Size(203, 35);
+            this.TXUsu.Size = new System.Drawing.Size(269, 42);
             this.TXUsu.TabIndex = 7;
             // 
             // TXPass
             // 
             this.TXPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
-            this.TXPass.Location = new System.Drawing.Point(413, 251);
+            this.TXPass.Location = new System.Drawing.Point(551, 309);
+            this.TXPass.Margin = new System.Windows.Forms.Padding(4);
             this.TXPass.Name = "TXPass";
-            this.TXPass.Size = new System.Drawing.Size(203, 35);
+            this.TXPass.Size = new System.Drawing.Size(269, 42);
             this.TXPass.TabIndex = 8;
             // 
             // ErrorUsu
@@ -170,9 +163,10 @@
             this.ErrorUsu.AutoSize = true;
             this.ErrorUsu.CausesValidation = false;
             this.ErrorUsu.ForeColor = System.Drawing.Color.Red;
-            this.ErrorUsu.Location = new System.Drawing.Point(622, 209);
+            this.ErrorUsu.Location = new System.Drawing.Point(829, 257);
+            this.ErrorUsu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ErrorUsu.Name = "ErrorUsu";
-            this.ErrorUsu.Size = new System.Drawing.Size(102, 13);
+            this.ErrorUsu.Size = new System.Drawing.Size(136, 17);
             this.ErrorUsu.TabIndex = 9;
             this.ErrorUsu.Text = "Ya existe un usuario";
             this.ErrorUsu.Visible = false;
@@ -217,9 +211,10 @@
             // 
             this.admin.AutoSize = true;
             this.admin.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
-            this.admin.Location = new System.Drawing.Point(450, 302);
+            this.admin.Location = new System.Drawing.Point(600, 372);
+            this.admin.Margin = new System.Windows.Forms.Padding(4);
             this.admin.Name = "admin";
-            this.admin.Size = new System.Drawing.Size(166, 30);
+            this.admin.Size = new System.Drawing.Size(213, 36);
             this.admin.TabIndex = 11;
             this.admin.Text = "Administrador";
             this.admin.UseVisualStyleBackColor = true;
@@ -228,34 +223,66 @@
             // InfoLogin
             // 
             this.InfoLogin.BackColor = System.Drawing.Color.Transparent;
+            this.InfoLogin.Controls.Add(this.dataGridView1);
+            this.InfoLogin.Controls.Add(this.button1);
+            this.InfoLogin.Controls.Add(this.label5);
             this.InfoLogin.Controls.Add(this.ActualizarJugadores);
             this.InfoLogin.Controls.Add(this.ActualizarPalabras);
             this.InfoLogin.Controls.Add(this.ActualizarCategoria);
-            this.InfoLogin.Controls.Add(this.partperd);
-            this.InfoLogin.Controls.Add(this.partgan);
-            this.InfoLogin.Controls.Add(this.partjug);
-            this.InfoLogin.Controls.Add(this.puntos);
             this.InfoLogin.Controls.Add(this.CerrarSesion);
-            this.InfoLogin.Controls.Add(this.BorrarDatos);
             this.InfoLogin.Controls.Add(this.Jugar);
-            this.InfoLogin.Controls.Add(this.label8);
-            this.InfoLogin.Controls.Add(label7);
-            this.InfoLogin.Controls.Add(this.label6);
-            this.InfoLogin.Controls.Add(this.label5);
-            this.InfoLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
-            this.InfoLogin.Location = new System.Drawing.Point(116, 65);
+            this.InfoLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.InfoLogin.Location = new System.Drawing.Point(156, 32);
+            this.InfoLogin.Margin = new System.Windows.Forms.Padding(4);
             this.InfoLogin.Name = "InfoLogin";
-            this.InfoLogin.Size = new System.Drawing.Size(661, 479);
+            this.InfoLogin.Padding = new System.Windows.Forms.Padding(4);
+            this.InfoLogin.Size = new System.Drawing.Size(881, 719);
             this.InfoLogin.TabIndex = 12;
             this.InfoLogin.TabStop = false;
             this.InfoLogin.Text = "Informacion del perfil";
             this.InfoLogin.Visible = false;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(26, 110);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(798, 274);
+            this.dataGridView1.TabIndex = 25;
+            this.dataGridView1.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
+            this.button1.Location = new System.Drawing.Point(577, 390);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(247, 160);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Configuracion";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
+            this.label5.Location = new System.Drawing.Point(135, 53);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(608, 47);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Bienvenido al Ahorcado jugador";
+            // 
             // ActualizarJugadores
             // 
-            this.ActualizarJugadores.Location = new System.Drawing.Point(433, 501);
+            this.ActualizarJugadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
+            this.ActualizarJugadores.Location = new System.Drawing.Point(577, 559);
+            this.ActualizarJugadores.Margin = new System.Windows.Forms.Padding(4);
             this.ActualizarJugadores.Name = "ActualizarJugadores";
-            this.ActualizarJugadores.Size = new System.Drawing.Size(185, 125);
+            this.ActualizarJugadores.Size = new System.Drawing.Size(247, 154);
             this.ActualizarJugadores.TabIndex = 13;
             this.ActualizarJugadores.Text = "Actualizar Jugadores";
             this.ActualizarJugadores.UseVisualStyleBackColor = true;
@@ -263,9 +290,11 @@
             // 
             // ActualizarPalabras
             // 
-            this.ActualizarPalabras.Location = new System.Drawing.Point(233, 501);
+            this.ActualizarPalabras.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
+            this.ActualizarPalabras.Location = new System.Drawing.Point(311, 559);
+            this.ActualizarPalabras.Margin = new System.Windows.Forms.Padding(4);
             this.ActualizarPalabras.Name = "ActualizarPalabras";
-            this.ActualizarPalabras.Size = new System.Drawing.Size(185, 125);
+            this.ActualizarPalabras.Size = new System.Drawing.Size(247, 154);
             this.ActualizarPalabras.TabIndex = 12;
             this.ActualizarPalabras.Text = "Actualizar Palabras";
             this.ActualizarPalabras.UseVisualStyleBackColor = true;
@@ -273,118 +302,46 @@
             // 
             // ActualizarCategoria
             // 
-            this.ActualizarCategoria.Location = new System.Drawing.Point(35, 501);
+            this.ActualizarCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
+            this.ActualizarCategoria.Image = global::Ahorcados.Properties.Resources.aplicacion;
+            this.ActualizarCategoria.Location = new System.Drawing.Point(47, 559);
+            this.ActualizarCategoria.Margin = new System.Windows.Forms.Padding(4);
             this.ActualizarCategoria.Name = "ActualizarCategoria";
-            this.ActualizarCategoria.Size = new System.Drawing.Size(182, 125);
+            this.ActualizarCategoria.Size = new System.Drawing.Size(243, 154);
             this.ActualizarCategoria.TabIndex = 11;
-            this.ActualizarCategoria.Text = "Actualizar Categoria";
             this.ActualizarCategoria.UseVisualStyleBackColor = true;
             this.ActualizarCategoria.Click += new System.EventHandler(this.ActualizarCategoria_Click);
             // 
-            // partperd
-            // 
-            this.partperd.AutoSize = true;
-            this.partperd.Location = new System.Drawing.Point(393, 252);
-            this.partperd.Name = "partperd";
-            this.partperd.Size = new System.Drawing.Size(53, 38);
-            this.partperd.TabIndex = 10;
-            this.partperd.Text = "23";
-            // 
-            // partgan
-            // 
-            this.partgan.AutoSize = true;
-            this.partgan.Location = new System.Drawing.Point(393, 189);
-            this.partgan.Name = "partgan";
-            this.partgan.Size = new System.Drawing.Size(53, 38);
-            this.partgan.TabIndex = 9;
-            this.partgan.Text = "19";
-            // 
-            // partjug
-            // 
-            this.partjug.AutoSize = true;
-            this.partjug.Location = new System.Drawing.Point(393, 126);
-            this.partjug.Name = "partjug";
-            this.partjug.Size = new System.Drawing.Size(53, 38);
-            this.partjug.TabIndex = 8;
-            this.partjug.Text = "24";
-            // 
-            // puntos
-            // 
-            this.puntos.AutoSize = true;
-            this.puntos.Location = new System.Drawing.Point(393, 69);
-            this.puntos.Name = "puntos";
-            this.puntos.Size = new System.Drawing.Size(53, 38);
-            this.puntos.TabIndex = 7;
-            this.puntos.Text = "15";
-            // 
             // CerrarSesion
             // 
-            this.CerrarSesion.Location = new System.Drawing.Point(433, 338);
+            this.CerrarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
+            this.CerrarSesion.Location = new System.Drawing.Point(311, 396);
+            this.CerrarSesion.Margin = new System.Windows.Forms.Padding(4);
             this.CerrarSesion.Name = "CerrarSesion";
-            this.CerrarSesion.Size = new System.Drawing.Size(185, 125);
+            this.CerrarSesion.Size = new System.Drawing.Size(247, 154);
             this.CerrarSesion.TabIndex = 6;
             this.CerrarSesion.Text = "Cerrar Sesion";
             this.CerrarSesion.UseVisualStyleBackColor = true;
             this.CerrarSesion.Click += new System.EventHandler(this.CerrarSesion_Click);
             // 
-            // BorrarDatos
-            // 
-            this.BorrarDatos.Location = new System.Drawing.Point(233, 338);
-            this.BorrarDatos.Name = "BorrarDatos";
-            this.BorrarDatos.Size = new System.Drawing.Size(185, 125);
-            this.BorrarDatos.TabIndex = 5;
-            this.BorrarDatos.Text = "Borrar Datos";
-            this.BorrarDatos.UseVisualStyleBackColor = true;
-            this.BorrarDatos.Click += new System.EventHandler(this.BorrarDatos_Click);
-            // 
             // Jugar
             // 
             this.Jugar.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
-            this.Jugar.Location = new System.Drawing.Point(35, 337);
+            this.Jugar.Location = new System.Drawing.Point(47, 396);
+            this.Jugar.Margin = new System.Windows.Forms.Padding(4);
             this.Jugar.Name = "Jugar";
-            this.Jugar.Size = new System.Drawing.Size(182, 126);
+            this.Jugar.Size = new System.Drawing.Size(243, 155);
             this.Jugar.TabIndex = 4;
             this.Jugar.Text = "Jugar";
             this.Jugar.UseVisualStyleBackColor = true;
             this.Jugar.Click += new System.EventHandler(this.Jugar_Click);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
-            this.label8.Location = new System.Drawing.Point(17, 252);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(299, 38);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Partidas perdidas =";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
-            this.label6.Location = new System.Drawing.Point(28, 126);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(288, 38);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Partidas jugadas =";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.CausesValidation = false;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
-            this.label5.Location = new System.Drawing.Point(102, 69);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(208, 38);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Puntuacion =";
-            // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(939, 751);
+            this.ClientSize = new System.Drawing.Size(1218, 773);
             this.Controls.Add(this.InfoLogin);
             this.Controls.Add(this.admin);
             this.Controls.Add(this.ErrorUsu);
@@ -398,12 +355,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form2";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Administracion";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.InfoLogin.ResumeLayout(false);
             this.InfoLogin.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -429,17 +387,12 @@
         private System.Windows.Forms.CheckBox admin;
         private System.Windows.Forms.GroupBox InfoLogin;
         private System.Windows.Forms.Button CerrarSesion;
-        private System.Windows.Forms.Button BorrarDatos;
         private System.Windows.Forms.Button Jugar;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label partperd;
-        private System.Windows.Forms.Label partgan;
-        private System.Windows.Forms.Label partjug;
-        private System.Windows.Forms.Label puntos;
         private System.Windows.Forms.Button ActualizarJugadores;
         private System.Windows.Forms.Button ActualizarPalabras;
         private System.Windows.Forms.Button ActualizarCategoria;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

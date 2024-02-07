@@ -26,6 +26,30 @@ namespace Ahorcados
             this.cadenaconex = cadenaconex;
 
         }
+
+        private void rellenarcombo()
+        {
+            string query = "SELECT IDPartida, Jugador, Fecha, Ganado FROM informacion where Jugador=@usuario;";
+            try
+            {
+                    using (MySqlCommand cmd = new MySqlCommand(query, mycon))
+                    {
+                    cmd.Parameters.AddWithValue("usuario",usuario);
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+
+                            // Asignar el origen de datos al DataGridView
+                            dataGridView1.DataSource = dataTable;
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar datos desde MySQL: " + ex.Message);
+            }
+}
         public bool conectar()
         {
             try
@@ -109,7 +133,9 @@ namespace Ahorcados
                         admin.Visible = false;
                         this.BackColor = Color.White;
                         InfoLogin.Visible = true;
+                        dataGridView1.Visible = true;
                         mostrarinforlogin(usuario, ADMIN);
+                        rellenarcombo();
                         admin.Checked = false;
                     }
                 }
@@ -119,6 +145,8 @@ namespace Ahorcados
                     {
                         mostrarinforlogin(usuario,ADMIN);
                         InfoLogin.Visible = true;
+                        dataGridView1.Visible = true;
+                        rellenarcombo();
                     }
                     else
                     {
@@ -130,56 +158,16 @@ namespace Ahorcados
         }
         void mostrarinforlogin(string usuario, int admin)
         {
-            using (MySqlConnection mycon = new MySqlConnection(cadenaconex))
+            if (admin == 1)
             {
-                mycon.Open();  // Abre la conexión
-
-                // Consulta SQL para verificar la existencia del usuario
-                string consulta = "SELECT Puntuacion, PartidasJugadas, PartidasGanadas, PartidasPerdidas from informacion where Jugador = @nombreUsuario ";
-
-                using (MySqlCommand command = new MySqlCommand(consulta, mycon))
-                {
-                    // Parámetro para el nombre de usuario
-                    command.Parameters.AddWithValue("@nombreUsuario", usuario);
-
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        // Verificar si hay filas devueltas
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                // Obtener los valores de las columnas
-                                int puntuacion = reader.GetInt32(0);
-                                int partidasJugadas = reader.GetInt32(1);
-                                int partidasGanadas = reader.GetInt32(2);
-                                int partidasPerdidas = reader.GetInt32(3);
-
-                                // Mostrar la información (puedes adaptar esto según tus necesidades)
-                                puntos.Text = puntuacion.ToString();
-                                partjug.Text = partidasJugadas.ToString();
-                                partgan.Text = partidasGanadas.ToString();
-                                partperd.Text = partidasPerdidas.ToString();
-
-                                if (admin==1)
-                                {
-                                    InfoLogin.Size = new System.Drawing.Size(661, 632);
-
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("El usuario no existe en la base de datos.");
-                        }
-
-                    }
-                }
+                InfoLogin.Size = new System.Drawing.Size(661, 632);
             }
         }
+        
         void AgregarNuevoUsuario(string usuario, string contraseña,bool admin)
         {
             int administrador=0;
+            int contadorpart = 0;
             if (admin==true)
             {
                 administrador = 1;
@@ -191,27 +179,37 @@ namespace Ahorcados
                 // Abrir la conexión
                 // Consulta SQL para insertar un nuevo usuario
                 string consulta = "INSERT INTO usuarios (Usuario, contrasena, Admin) VALUES (@nuevoUsuario,@contraseña,@admin)";
-                string consulta2 = "INSERT INTO informacion (Jugador, Puntuacion, PartidasJugadas, PartidasGanadas, PartidasPerdidas) VALUES (@usu,@puntos,@partjug,@partgan,@partper)";
+                string consulta3 = "Select count(*) from informacion";
+                string consulta2 = "INSERT INTO informacion (IDPartida, Jugador, Puntuacion, PartidasJugadas) VALUES (@IdPart,@usu,@puntos,@partjug)";
 
-                using (MySqlCommand command = new MySqlCommand(consulta, mycon))
+            using (MySqlCommand commando3 = new MySqlCommand(consulta3, mycon))
+            {
+                using (MySqlDataReader reader = commando3.ExecuteReader())
                 {
+                    if (reader.Read())
+                    {
+                        contadorpart = reader.GetInt32(0);
+                    }
+                }
+            }
+            using (MySqlCommand command = new MySqlCommand(consulta, mycon))
+            {
                 // Parámetro para el nuevo nombre de usuario
+               
                 command.Parameters.AddWithValue("@nuevoUsuario", usuario);
                 command.Parameters.AddWithValue("@contraseña", contraseña);
                 command.Parameters.AddWithValue("@admin", administrador);
 
                 // Ejecutar la consulta
                 command.ExecuteNonQuery();
-                }
+            }
                  using (MySqlCommand command2 = new MySqlCommand(consulta2, mycon))
                 {
                 // Parámetro para el nuevo nombre de usuario
-
+                command2.Parameters.AddWithValue("@IdPart", contadorpart++);
                 command2.Parameters.AddWithValue("@usu", usuario);
                 command2.Parameters.AddWithValue("@puntos", puntuacion);
                 command2.Parameters.AddWithValue("@partjug", partidasjugadas);
-                command2.Parameters.AddWithValue("@partgan", partidasganadas);
-                command2.Parameters.AddWithValue("@partper", partidasperdidas);
 
                 // Ejecutar la consulta
                 command2.ExecuteNonQuery();
@@ -358,50 +356,10 @@ namespace Ahorcados
             Jugadores.ShowDialog();
         }
 
-        private void BorrarDatos_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            string usuario = TXUsu.Text;
-            DialogResult resultado = MessageBox.Show($"¿Estás seguro de que deseas borrar los datos para el usuario {usuario}?", "Confirmar Actualización", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (resultado==DialogResult.OK)
-            {
-                borrardatos(usuario);
-            }
-            else
-            {
-                MessageBox.Show("Operacion cancelada por el usuario.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            }
-
         }
-        void borrardatos(string usuario)
-        {
-            using (MySqlConnection mycon = new MySqlConnection(cadenaconex))
-            {
-                mycon.Open();  // Abre la conexión
 
-                // Consulta SQL para actualizar los datos del usuario
-                string consulta = "UPDATE informacion SET Puntuacion = 0, PartidasJugadas = 0, PartidasGanadas = 0, PartidasPerdidas = 0 WHERE Jugador = @nombreUsuario";
-
-                using (MySqlCommand command = new MySqlCommand(consulta, mycon))
-                {
-                    // Parámetro para el nombre de usuario
-                    command.Parameters.AddWithValue("@nombreUsuario", usuario);
-
-                    // Ejecutar la actualización
-                    int filasActualizadas = command.ExecuteNonQuery();
-
-                    // Verificar si se realizaron actualizaciones
-                    if (filasActualizadas > 0)
-                    {
-                        mostrarinforlogin(usuario,ADMIN);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"No se encontró ningún usuario con el nombre {usuario}.");
-                    }
-                }
-            }
-        }
 
         private void Jugar_Click(object sender, EventArgs e)
         {

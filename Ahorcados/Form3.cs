@@ -105,7 +105,7 @@ namespace Ahorcados
             }
             else
             {
-                string query = "SELECT Usuario, Contrasena, Admin FROM usuarios;";
+                string query = "SELECT Usuario, Contrasena, Admin, Puntuacion FROM usuarios;";
 
                 try
                 {
@@ -172,6 +172,7 @@ namespace Ahorcados
                     editar.TX1.Text = filaSeleccionada.Cells["Usuario"].Value.ToString();
                     editar.TX2.Text = filaSeleccionada.Cells["Contrasena"].Value.ToString();
                     editar.ADMIN.Value = int.Parse(filaSeleccionada.Cells["Admin"].Value.ToString());
+                    editar.TX4.Text = filaSeleccionada.Cells["Puntuacion"].Value.ToString();
                     editar.ShowDialog();
                 }
                 // Verificar si hay celdas en la fila

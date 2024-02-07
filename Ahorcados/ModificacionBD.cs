@@ -87,6 +87,8 @@ namespace Ahorcados
                 Obj1.Text = "Palabra";
                 Obj2.Text = "Longitud";
                 Obj3.Visible = false;
+                Obj4.Visible = false;
+                TX4.Visible = false;
                 CB.Visible = true;
                 CB.Location = new System.Drawing.Point(365, 236);
                 TX2.Enabled = false;
@@ -98,7 +100,9 @@ namespace Ahorcados
                 Obj1.Text = "Categoria";
                 Obj2.Text = "Dificultad";
                 TX3.Visible = false;
+                TX4.Visible = false;
                 Obj3.Visible = false;
+                Obj4.Visible = false;
                 ADMIN.Visible = false;
 
             }
@@ -107,6 +111,7 @@ namespace Ahorcados
                 Obj1.Text = "Usuario";
                 Obj2.Text = "Contraseña";
                 Obj3.Text = "Admin";
+                Obj4.Text = "Puntuacion";
                 label3.Visible = true;
                 label4.Visible = true;
             }
