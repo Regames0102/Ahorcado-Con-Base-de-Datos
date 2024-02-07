@@ -69,7 +69,7 @@
             label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
             label7.Location = new System.Drawing.Point(17, 189);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(377, 47);
+            label7.Size = new System.Drawing.Size(299, 38);
             label7.TabIndex = 2;
             label7.Text = "Partidas ganadas =";
             // 
@@ -80,7 +80,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36.25F);
             this.label1.Location = new System.Drawing.Point(244, 69);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(462, 70);
+            this.label1.Size = new System.Drawing.Size(373, 57);
             this.label1.TabIndex = 0;
             this.label1.Text = "Inicio de Sesion";
             // 
@@ -90,7 +90,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.label2.Location = new System.Drawing.Point(219, 335);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(227, 39);
+            this.label2.Size = new System.Drawing.Size(181, 31);
             this.label2.TabIndex = 1;
             this.label2.Text = "¿Eres nuevo?";
             // 
@@ -100,7 +100,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.label3.Location = new System.Drawing.Point(232, 251);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(193, 39);
+            this.label3.Size = new System.Drawing.Size(155, 31);
             this.label3.TabIndex = 2;
             this.label3.Text = "Contraseña";
             // 
@@ -110,7 +110,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.label4.Location = new System.Drawing.Point(279, 196);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(135, 39);
+            this.label4.Size = new System.Drawing.Size(108, 31);
             this.label4.TabIndex = 3;
             this.label4.Text = "Usuario";
             // 
@@ -120,7 +120,7 @@
             this.CrearCuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.CrearCuenta.Location = new System.Drawing.Point(407, 335);
             this.CrearCuenta.Name = "CrearCuenta";
-            this.CrearCuenta.Size = new System.Drawing.Size(279, 39);
+            this.CrearCuenta.Size = new System.Drawing.Size(223, 31);
             this.CrearCuenta.TabIndex = 4;
             this.CrearCuenta.Text = "Crear una cuenta";
             this.CrearCuenta.Click += new System.EventHandler(this.CrearCuenta_Click);
@@ -154,7 +154,7 @@
             this.TXUsu.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
             this.TXUsu.Location = new System.Drawing.Point(413, 196);
             this.TXUsu.Name = "TXUsu";
-            this.TXUsu.Size = new System.Drawing.Size(203, 42);
+            this.TXUsu.Size = new System.Drawing.Size(203, 35);
             this.TXUsu.TabIndex = 7;
             // 
             // TXPass
@@ -162,7 +162,7 @@
             this.TXPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
             this.TXPass.Location = new System.Drawing.Point(413, 251);
             this.TXPass.Name = "TXPass";
-            this.TXPass.Size = new System.Drawing.Size(203, 42);
+            this.TXPass.Size = new System.Drawing.Size(203, 35);
             this.TXPass.TabIndex = 8;
             // 
             // ErrorUsu
@@ -172,7 +172,7 @@
             this.ErrorUsu.ForeColor = System.Drawing.Color.Red;
             this.ErrorUsu.Location = new System.Drawing.Point(622, 209);
             this.ErrorUsu.Name = "ErrorUsu";
-            this.ErrorUsu.Size = new System.Drawing.Size(117, 15);
+            this.ErrorUsu.Size = new System.Drawing.Size(102, 13);
             this.ErrorUsu.TabIndex = 9;
             this.ErrorUsu.Text = "Ya existe un usuario";
             this.ErrorUsu.Visible = false;
@@ -219,7 +219,7 @@
             this.admin.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
             this.admin.Location = new System.Drawing.Point(450, 302);
             this.admin.Name = "admin";
-            this.admin.Size = new System.Drawing.Size(213, 36);
+            this.admin.Size = new System.Drawing.Size(166, 30);
             this.admin.TabIndex = 11;
             this.admin.Text = "Administrador";
             this.admin.UseVisualStyleBackColor = true;
@@ -245,7 +245,7 @@
             this.InfoLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
             this.InfoLogin.Location = new System.Drawing.Point(116, 65);
             this.InfoLogin.Name = "InfoLogin";
-            this.InfoLogin.Size = new System.Drawing.Size(661, 478);
+            this.InfoLogin.Size = new System.Drawing.Size(661, 479);
             this.InfoLogin.TabIndex = 12;
             this.InfoLogin.TabStop = false;
             this.InfoLogin.Text = "Informacion del perfil";
@@ -259,6 +259,7 @@
             this.ActualizarJugadores.TabIndex = 13;
             this.ActualizarJugadores.Text = "Actualizar Jugadores";
             this.ActualizarJugadores.UseVisualStyleBackColor = true;
+            this.ActualizarJugadores.Click += new System.EventHandler(this.ActualizarJugadores_Click);
             // 
             // ActualizarPalabras
             // 
@@ -268,6 +269,7 @@
             this.ActualizarPalabras.TabIndex = 12;
             this.ActualizarPalabras.Text = "Actualizar Palabras";
             this.ActualizarPalabras.UseVisualStyleBackColor = true;
+            this.ActualizarPalabras.Click += new System.EventHandler(this.ActualizarPalabras_Click);
             // 
             // ActualizarCategoria
             // 
@@ -277,13 +279,14 @@
             this.ActualizarCategoria.TabIndex = 11;
             this.ActualizarCategoria.Text = "Actualizar Categoria";
             this.ActualizarCategoria.UseVisualStyleBackColor = true;
+            this.ActualizarCategoria.Click += new System.EventHandler(this.ActualizarCategoria_Click);
             // 
             // partperd
             // 
             this.partperd.AutoSize = true;
             this.partperd.Location = new System.Drawing.Point(393, 252);
             this.partperd.Name = "partperd";
-            this.partperd.Size = new System.Drawing.Size(66, 47);
+            this.partperd.Size = new System.Drawing.Size(53, 38);
             this.partperd.TabIndex = 10;
             this.partperd.Text = "23";
             // 
@@ -292,7 +295,7 @@
             this.partgan.AutoSize = true;
             this.partgan.Location = new System.Drawing.Point(393, 189);
             this.partgan.Name = "partgan";
-            this.partgan.Size = new System.Drawing.Size(66, 47);
+            this.partgan.Size = new System.Drawing.Size(53, 38);
             this.partgan.TabIndex = 9;
             this.partgan.Text = "19";
             // 
@@ -301,7 +304,7 @@
             this.partjug.AutoSize = true;
             this.partjug.Location = new System.Drawing.Point(393, 126);
             this.partjug.Name = "partjug";
-            this.partjug.Size = new System.Drawing.Size(66, 47);
+            this.partjug.Size = new System.Drawing.Size(53, 38);
             this.partjug.TabIndex = 8;
             this.partjug.Text = "24";
             // 
@@ -310,7 +313,7 @@
             this.puntos.AutoSize = true;
             this.puntos.Location = new System.Drawing.Point(393, 69);
             this.puntos.Name = "puntos";
-            this.puntos.Size = new System.Drawing.Size(66, 47);
+            this.puntos.Size = new System.Drawing.Size(53, 38);
             this.puntos.TabIndex = 7;
             this.puntos.Text = "15";
             // 
@@ -351,7 +354,7 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
             this.label8.Location = new System.Drawing.Point(17, 252);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(378, 47);
+            this.label8.Size = new System.Drawing.Size(299, 38);
             this.label8.TabIndex = 3;
             this.label8.Text = "Partidas perdidas =";
             // 
@@ -361,7 +364,7 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
             this.label6.Location = new System.Drawing.Point(28, 126);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(364, 47);
+            this.label6.Size = new System.Drawing.Size(288, 38);
             this.label6.TabIndex = 1;
             this.label6.Text = "Partidas jugadas =";
             // 
@@ -372,7 +375,7 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
             this.label5.Location = new System.Drawing.Point(102, 69);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(262, 47);
+            this.label5.Size = new System.Drawing.Size(208, 38);
             this.label5.TabIndex = 0;
             this.label5.Text = "Puntuacion =";
             // 

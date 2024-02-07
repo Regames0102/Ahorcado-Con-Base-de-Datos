@@ -29,6 +29,7 @@ namespace Ahorcados
         string cadenaconex;
         public MySqlConnection mycon;
         string usuario;
+        private Dictionary<string, string[]> categoriasPalabras = new Dictionary<string, string[]>();
 
         private void Jugar_Click(object sender, EventArgs e)
         {
@@ -90,54 +91,35 @@ namespace Ahorcados
             cargardatoscombo();
         }
 
+ 
+
         private void creararray(string categoria)
         {
-            List<string> palabras = new List<string>();  // Usamos una lista para almacenar los valores dinámicamente
+            List<string> palabras = new List<string>();
 
-            using (MySqlConnection mycon = new MySqlConnection(cadenaconex))
+            string consulta = "SELECT palabra FROM palabras WHERE categoria = @Categoria";
+            using (MySqlCommand command = new MySqlCommand(consulta, mycon))
             {
-                string consulta = "SELECT palabra FROM palabras WHERE categoria = @Categoria";
-                using (MySqlCommand command = new MySqlCommand(consulta, mycon))
+                command.Parameters.AddWithValue("@Categoria", categoria);
+                using (MySqlDataReader reader = command.ExecuteReader())
                 {
-                    command.Parameters.AddWithValue("@Categoria", categoria);
-                    using (MySqlDataReader reader = command.ExecuteReader())
+                    // Verificar si hay filas devueltas
+                    if (reader.HasRows)
                     {
-                        // Verificar si hay filas devueltas
-                        if (reader.HasRows)
+                        // Leer cada fila y agregar el valor a la lista
+                        while (reader.Read())
                         {
-                            // Leer cada fila y agregar el valor a la lista
-                            while (reader.Read())
-                            {
-                                // Supongamos que estás obteniendo un valor de una columna llamada "TuColumna"
-                                string valor = reader[0].ToString();
-                                palabras.Add(valor);
-                            }
+                            string valor = reader[0].ToString();
+                            palabras.Add(valor);
                         }
                     }
                 }
             }
 
-            if (categoria.Equals("Animales"))
-            {
-                Animales = palabras.ToArray();
-            }
-            else if (categoria.Equals("Ciudades"))
-            {
-                Ciudades = palabras.ToArray();
-            }
-            else if (categoria.Equals("Comida"))
-            {
-                Comida = palabras.ToArray();
-            }
-            else if (categoria.Equals("Deportes"))
-            {
-                Deportes = palabras.ToArray();
-            }
-            else
-            {
-                Paises = palabras.ToArray();
-            }
+            // Almacenar la lista de palabras en el diccionario
+            categoriasPalabras[categoria] = palabras.ToArray();
         }
+    
 
         public bool conectar()
         {
@@ -159,7 +141,7 @@ namespace Ahorcados
 
         public Form4(string cadenaconex, string Usuario)
         {
-            this.usuario = usuario;
+            this.usuario = Usuario;
             this.cadenaconex = cadenaconex;
             InitializeComponent();
             SeleccCat.Font = new Font("BlackChancery", 20);
@@ -210,25 +192,9 @@ namespace Ahorcados
                 string categoriaElegida = categorias.SelectedItem.ToString();
 
                 creararray(categoriaElegida);
-                switch (categoriaElegida)
+                if (categoriasPalabras.ContainsKey(categoriaElegida))
                 {
-                    case "Animales":
-                        Palabras = Animales;
-                        break;
-                    case "Paises":
-                        Palabras = Paises;
-                        break;
-                    case "Ciudades":
-                        Palabras = Ciudades;
-                        break;
-                    case "Comida":
-                        Palabras = Comida;
-                        break;
-                    case "Deportes":
-                        Palabras = Deportes;
-                        break;
-                    default:
-                        break;
+                    Palabras = categoriasPalabras[categoriaElegida];
                 }
                 categorias.Visible = false;
                 SeleccCat.Visible = false;

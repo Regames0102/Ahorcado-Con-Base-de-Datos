@@ -94,6 +94,7 @@ namespace Ahorcados
                 if (admin.Checked == true)
                 {
                     admini = true;
+                    ADMIN = 1;
                 }
                 if (cuentanueva == true)
                 {
@@ -105,7 +106,11 @@ namespace Ahorcados
                     {
                         ErrorUsu.Visible = false;
                         AgregarNuevoUsuario(usuario, contraseña, admini);
+                        admin.Visible = false;
+                        this.BackColor = Color.White;
                         InfoLogin.Visible = true;
+                        mostrarinforlogin(usuario, ADMIN);
+                        admin.Checked = false;
                     }
                 }
                 else
@@ -121,6 +126,7 @@ namespace Ahorcados
                     }
                 }
             }
+            ADMIN = 0;
         }
         void mostrarinforlogin(string usuario, int admin)
         {
@@ -184,7 +190,7 @@ namespace Ahorcados
             }
                 // Abrir la conexión
                 // Consulta SQL para insertar un nuevo usuario
-                string consulta = "INSERT INTO usuarios (Usuario, Contraseña, Admin) VALUES (@nuevoUsuario,@contraseña,@admin)";
+                string consulta = "INSERT INTO usuarios (Usuario, contrasena, Admin) VALUES (@nuevoUsuario,@contraseña,@admin)";
                 string consulta2 = "INSERT INTO informacion (Jugador, Puntuacion, PartidasJugadas, PartidasGanadas, PartidasPerdidas) VALUES (@usu,@puntos,@partjug,@partgan,@partper)";
 
                 using (MySqlCommand command = new MySqlCommand(consulta, mycon))
@@ -213,12 +219,13 @@ namespace Ahorcados
         }
         public bool login(string usuario, string contraseña)
         {
+            admin.Checked = false;
             using (MySqlConnection mycon = new MySqlConnection(cadenaconex))
             {
                 mycon.Open();  // Abre la conexión
 
                 // Consulta SQL para verificar la existencia del usuario
-                string consulta = "SELECT COUNT(*), Admin FROM usuarios WHERE Usuario = @nombreUsuario and Contraseña = @contraseña";
+                string consulta = "SELECT COUNT(*), Admin FROM usuarios WHERE Usuario = @nombreUsuario and Contrasena = @contraseña";
 
                 using (MySqlCommand command = new MySqlCommand(consulta, mycon))
                 {
@@ -234,7 +241,15 @@ namespace Ahorcados
                         {
                             // Obtener el número de filas y el valor adicional
                             int count = reader.GetInt32(0);
-                            int otroValor = reader.GetInt32(1); // Ajusta el índice según la posición de tu columna en la consulta
+                            int otroValor = 0;
+                            try
+                            {
+                                otroValor = reader.GetInt32(1);
+                            }
+                            catch (Exception e) { 
+                            
+                            }
+                             // Ajusta el índice según la posición de tu columna en la consulta
                             if (otroValor>0)
                             {
                                 ADMIN = 1;
@@ -296,17 +311,51 @@ namespace Ahorcados
                 BTNAceptar.Text = "Iniciar Sesion";
                 BTNCanc.Text = "Cancelar";
                 admin.Visible = false;
+                cuentanueva = false;
                 label1.Location = new System.Drawing.Point(244, 69);
+                InfoLogin.Size = new System.Drawing.Size(661, 479);
             }
             else
             {
-
+                this.Close();
             }
         }
 
         private void CerrarSesion_Click(object sender, EventArgs e)
         {
             InfoLogin.Visible = false;
+            InfoLogin.Size = new System.Drawing.Size(661, 479);
+        }
+
+        private void ActualizarCategoria_Click(object sender, EventArgs e)
+        {
+            string valor = "Categoria";
+            Form3 Categorias = new Form3(cadenaconex,valor);
+            Categorias.añadirObjetoToolStripMenuItem.Text = "Añadir Categoria";
+            Categorias.editarObjetoToolStripMenuItem.Text = "Editar Categoria";
+            Categorias.borrarObjetoToolStripMenuItem.Text = "Borrar Categoria";
+            Categorias.ShowDialog();
+
+        }
+
+        private void ActualizarPalabras_Click(object sender, EventArgs e)
+        {
+            string valor = "Palabra";
+            Form3 Palabras = new Form3(cadenaconex,valor);
+            Palabras.añadirObjetoToolStripMenuItem.Text = "Añadir Palabras";
+            Palabras.editarObjetoToolStripMenuItem.Text = "Editar Palabras";
+            Palabras.borrarObjetoToolStripMenuItem.Text = "Borrar Palabras";
+            Palabras.ShowDialog();
+        }
+
+        private void ActualizarJugadores_Click(object sender, EventArgs e)
+        {
+            string valor = "Jugadores";
+            Form3 Jugadores = new Form3(cadenaconex,valor);
+            Jugadores.añadirObjetoToolStripMenuItem.Text = "Añadir Jugadores";
+            Jugadores.editarObjetoToolStripMenuItem.Text = "Editar Jugadores";
+            Jugadores.borrarObjetoToolStripMenuItem.Text = "Borrar Jugadores";
+            Jugadores.ShowDialog();
         }
 
         private void BorrarDatos_Click(object sender, EventArgs e)
